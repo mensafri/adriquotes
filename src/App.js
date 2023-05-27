@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Navbar";
-import Quotes from './Quotes'
+import Quotes from "./Quotes";
 
 function App() {
   return (
