@@ -3,10 +3,9 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
-  setDoc,
+  getDocs,
   collection,
   addDoc,
-  doc,
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,9 +27,11 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
+const collection_name = 'quotes';
+
 export const inputQuotes = async (quotesInput) => {
   try {
-    await addDoc(collection(db, "quotes"), {
+    await addDoc(collection(db, collection_name), {
       quotes: quotesInput,
       date: new Date(),
     });
@@ -38,3 +39,17 @@ export const inputQuotes = async (quotesInput) => {
     console.error("Error adding document: ", e);
   }
 };
+
+export const findQuotes = async () => {
+    const doc_refs = await getDocs(collection(db, collection_name))
+
+    const res = []
+
+    doc_refs.forEach(country => {
+        res.push({
+            id: country.id, 
+            ...country.data()
+        })
+    })
+    return res
+}

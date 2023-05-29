@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Box, Button, FormControl, InputLabel, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import "./quotes.styles.css";
 import { inputQuotes } from "../firebase";
 
@@ -10,43 +13,49 @@ export default function InputQuotes() {
     setQuote(e.target.value);
   };
 
-  const handleClick = (event) => {
-    inputQuotes(quote);
-    setQuote("");
+  const handleClick = () => {
+    if (quote !== "") {
+      inputQuotes(quote);
+      setQuote("");
+    } else {
+      return;
+    }
   };
 
   return (
-    <div className="input-box">
-      <InputLabel
+    <div className="quotes-box">
+      <Box
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          fontWeight: 1000,
-          top: 200,
+          width: "55%",
+          height: "45%",
         }}
       >
-        Masukkan Gerutuan Lord Adri!
-      </InputLabel>
-      <Box
-        sx={{ padding: 5 }}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="70vh"
-      >
-        <FormControl>
-          <TextField
-            id="outlined-basic"
-            label="Enter your quote here"
-            variant="outlined"
-            fullWidth
-            value={quote}
-            onChange={handleChange}
-          />
-          <Button variant="contained" onClick={handleClick} sx={{ margin: 3 }}>
-            Sip!
-          </Button>
-        </FormControl>
+        <Card
+          variant="outlined"
+          style={{
+            height: "100%",
+          }}
+        >
+          <CardContent>
+            <TextField
+              label="Masukkan Gerutuan Lord Adri Disini"
+              fullWidth
+              value={quote}
+              onChange={handleChange}
+              multiline={true}
+              rows={5}
+            />
+          </CardContent>
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleClick}
+            >
+              Sip!
+            </Button>
+          </CardActions>
+        </Card>
       </Box>
     </div>
   );

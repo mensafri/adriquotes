@@ -24,7 +24,7 @@ export default function Navbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Gerutuan Bapak Podcast Indonesia
+              Gerutuan Bapak Podcast Indonesia atau Lord Adri deh bang kalau gatau
             </Typography>
             <Button color="inherit">Login</Button>
           </Toolbar>

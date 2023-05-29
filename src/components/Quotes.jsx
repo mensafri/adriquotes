@@ -1,45 +1,46 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import "./quotes.styles.css";
-import { inputQuotes } from "../firebase";
-
-const quotes = "Lo Pikir Lo Keren";
-
-const card = (
-  <React.Fragment>
-    <CardContent>
-      <Typography variant="h5" component="div">
-        "Lo Pikir Lo Keren?"
-      </Typography>
-    </CardContent>
-    <CardActions sx={{ justifyContent: "center" }}>
-      <Button
-        size="small"
-        variant="outlined"
-        color="primary"
-        onClick={() => inputQuotes(quotes)}
-      >
-        Gerutu Lagi Bang!
-      </Button>
-    </CardActions>
-  </React.Fragment>
-);
+import { findQuotes } from "../firebase";
 
 export default function Quotes() {
+  const [quotes, setQuotes] = React.useState("Lo Pikir Lo Keren?");
+
+  const handleClick = async () => {
+    const response = await findQuotes();
+    const index = Math.floor(Math.random() * response.length);
+    if (response[index].quotes !== "") {
+      setQuotes(response[index].quotes);
+    } else {
+      setQuotes("Lo Pikir Lo Keren?");
+    }
+  };
+
   return (
     <div className="quotes-box">
       <Box
-        sx={{ minWidth: 275 }}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
+        sx={{
+          width: "35%",
+          height: "35%",
+        }}
+        textAlign="center"
       >
-        <Card variant="outlined">{card}</Card>
+        <Card
+          style={{
+            height: "90%",
+            boxShadow: "none",
+            opacity: 0.8,
+          }}
+        >
+          <p className="quote-container">"{quotes}"</p>
+        </Card>
+        <Box mt={4}>
+          <Button variant="contained" onClick={handleClick} color="primary">
+            Gerutu Lagi Bang!
+          </Button>
+        </Box>
       </Box>
     </div>
   );
