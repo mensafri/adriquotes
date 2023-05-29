@@ -13,9 +13,10 @@ const firebaseConfig = {
   storageBucket: "adri-quotes.appspot.com",
   messagingSenderId: "627253837284",
   appId: "1:627253837284:web:d314650c30d70adcbcdbf1",
-  measurementId: "G-001CMM8BFZ"
+  measurementId: "G-001CMM8BFZ",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
