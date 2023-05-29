@@ -1,13 +1,11 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./Navbar";
-import Quotes from "./Quotes";
-
+import Home from "./Home";
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Quotes />
-    </div>
+    <Routes>
+      <Route index element={<Home />} />
+    </Routes>
   );
 }
 
