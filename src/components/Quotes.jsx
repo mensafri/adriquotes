@@ -5,7 +5,10 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import './quotes.styles.css'
+import "./quotes.styles.css";
+import { testData } from "../firebase";
+
+const quotes = "Lo Pikir Lo Keren";
 
 const card = (
   <React.Fragment>
@@ -15,7 +18,14 @@ const card = (
       </Typography>
     </CardContent>
     <CardActions sx={{ justifyContent: "center" }}>
-      <Button size="small" variant="outlined" color="primary" >Gerutu Lagi Bang!</Button>
+      <Button
+        size="small"
+        variant="outlined"
+        color="primary"
+        onClick={() => testData(quotes)}
+      >
+        Gerutu Lagi Bang!
+      </Button>
     </CardActions>
   </React.Fragment>
 );
@@ -23,7 +33,12 @@ const card = (
 export default function Quotes() {
   return (
     <div className="quotes-box">
-      <Box sx={{ minWidth: 275 }} display="flex" justifyContent="center" alignItems="center">
+      <Box
+        sx={{ minWidth: 275 }}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Card variant="outlined">{card}</Card>
       </Box>
     </div>

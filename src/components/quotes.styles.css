@@ -1,0 +1,13 @@
+.quotes-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  opacity: 0.85;
+}
+/* 
+.input-box {
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+} */
