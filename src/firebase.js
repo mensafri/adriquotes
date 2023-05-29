@@ -28,14 +28,13 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-export const testData = async (quotesInput) => {
-    try {
-      const docRef = await addDoc(collection(db, "quotes"), {
-        quotes: quotesInput,
-        date: new Date(),
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-} 
+export const inputQuotes = async (quotesInput) => {
+  try {
+    await addDoc(collection(db, "quotes"), {
+      quotes: quotesInput,
+      date: new Date(),
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};

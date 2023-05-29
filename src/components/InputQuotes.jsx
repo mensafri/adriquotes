@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, FormControl, InputLabel, TextField } from "@mui/material";
 import "./quotes.styles.css";
+import { inputQuotes } from "../firebase";
 
 export default function InputQuotes() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [quote, setQuote] = useState("");
+
+  const handleChange = (e) => {
+    setQuote(e.target.value);
+  };
+
+  const handleClick = (event) => {
+    inputQuotes(quote);
+    setQuote("");
   };
 
   return (
@@ -20,7 +28,7 @@ export default function InputQuotes() {
         Masukkan Gerutuan Lord Adri!
       </InputLabel>
       <Box
-        sx={{ padding: 5}}
+        sx={{ padding: 5 }}
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -31,12 +39,11 @@ export default function InputQuotes() {
             id="outlined-basic"
             label="Enter your quote here"
             variant="outlined"
+            fullWidth
+            value={quote}
+            onChange={handleChange}
           />
-          <Button
-            variant="contained"
-            onSubmit={handleSubmit}
-            sx={{ margin: 3 }}
-          >
+          <Button variant="contained" onClick={handleClick} sx={{ margin: 3 }}>
             Sip!
           </Button>
         </FormControl>

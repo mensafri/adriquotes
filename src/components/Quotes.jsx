@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./quotes.styles.css";
-import { testData } from "../firebase";
+import { inputQuotes } from "../firebase";
 
 const quotes = "Lo Pikir Lo Keren";
 
@@ -22,7 +22,7 @@ const card = (
         size="small"
         variant="outlined"
         color="primary"
-        onClick={() => testData(quotes)}
+        onClick={() => inputQuotes(quotes)}
       >
         Gerutu Lagi Bang!
       </Button>

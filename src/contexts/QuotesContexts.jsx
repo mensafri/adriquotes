@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { inputQuotes } from "../firebase";
 
 export const QuotesContext = createContext({
   quotes: [],
@@ -11,8 +12,13 @@ export const QuotesContext = createContext({
 
 export const QuotesProvider = ({ children }) => {
   const [quotes, setQuotes] = useState([]);
-  const value = { quotes, setQuotes };
 
+  const addQuotes = (inputQuote) => {
+    inputQuotes(inputQuote);
+    setQuotes(inputQuote);
+  };
+
+  const value = { quotes, addQuotes };
   return (
     <QuotesContext.Provider value={value}>{children}</QuotesContext.Provider>
   );
