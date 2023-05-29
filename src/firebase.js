@@ -41,14 +41,14 @@ export const inputQuotes = async (quotesInput) => {
 };
 
 export const findQuotes = async () => {
-    const doc_refs = await getDocs(collection(db, collection_name))
+    const quotes_ref = await getDocs(collection(db, collection_name))
 
     const res = []
 
-    doc_refs.forEach(country => {
+    quotes_ref.forEach(quote => {
         res.push({
-            id: country.id, 
-            ...country.data()
+            id: quote.id, 
+            ...quote.data()
         })
     })
     return res
