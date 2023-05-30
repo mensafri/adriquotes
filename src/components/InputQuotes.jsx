@@ -8,7 +8,7 @@ import { QuotesContext } from "../contexts/QuotesContexts";
 
 export default function InputQuotes() {
   const [quote, setQuote] = useState("");
-  const { addQuotes, quotes } = useContext(QuotesContext);
+  const { addQuotes } = useContext(QuotesContext);
 
   const handleChange = (e) => {
     setQuote(e.target.value);
@@ -17,7 +17,6 @@ export default function InputQuotes() {
   const handleClick = () => {
     if (quote !== "") {
       addQuotes(quote);
-      console.log('quotes context from input', quotes);
     } else {
       return;
     }

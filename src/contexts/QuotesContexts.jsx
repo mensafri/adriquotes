@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { findQuotes, inputQuotes } from "../firebase";
 
 export const QuotesContext = createContext({
@@ -19,10 +19,14 @@ export const QuotesProvider = ({ children }) => {
     setQuotes(inputQuote);
   };
 
-  const getArrayQuotes = async  () => {
+  const getArrayQuotes = async () => {
     const response = await findQuotes();
     setArrayQuotes(response);
   };
+
+  useEffect(() => {
+    getArrayQuotes();
+  }, []);
 
   const value = { quotes, addQuotes, getArrayQuotes, arrayQuotes };
   return (

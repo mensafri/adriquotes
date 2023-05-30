@@ -7,26 +7,27 @@ import { QuotesContext } from "../contexts/QuotesContexts";
 
 export default function Quotes() {
   const [quote, setQuote] = React.useState("Lo Pikir Lo Keren?");
-  const { getArrayQuotes, arrayQuotes } = React.useContext(QuotesContext);
+  const { arrayQuotes } = React.useContext(QuotesContext);
 
   const handleClick = async () => {
     const index = Math.floor(Math.random() * arrayQuotes.length);
     if (arrayQuotes[index].quotes !== "" || arrayQuotes[index].quotes === []) {
       setQuote(arrayQuotes[index].quotes);
       console.log(arrayQuotes[index].quotes);
+      console.log(arrayQuotes[index].id);
     } else {
       setQuote("Lo Pikir Lo Keren?");
     }
   };
 
-  React.useEffect(() => {
-    const fetchQuotes = async () => {
-      await getArrayQuotes();
-    };
+  // React.useEffect(() => {
+  //   const fetchQuotes = async () => {
+  //     await getArrayQuotes();
+  //   };
 
-    fetchQuotes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   fetchQuotes();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="quotes-box">
