@@ -1,24 +1,30 @@
 import { createContext, useState } from "react";
-import { inputQuotes } from "../firebase";
+import { findQuotes, inputQuotes } from "../firebase";
 
 export const QuotesContext = createContext({
-  quotes: [],
-  addQuote: () => {},
+  quotes: "",
+  arrayQuotes: [],
+  getArrayQuotes: () => {},
+  addQuotes: () => {},
   deleteQuote: () => {},
   updateQuote: () => {},
-  updateQuoteStatus: () => {},
-  updateQuoteAuthor: () => {},
 });
 
 export const QuotesProvider = ({ children }) => {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState("");
+  const [arrayQuotes, setArrayQuotes] = useState([]);
 
   const addQuotes = (inputQuote) => {
     inputQuotes(inputQuote);
     setQuotes(inputQuote);
   };
 
-  const value = { quotes, addQuotes };
+  const getArrayQuotes = async  () => {
+    const response = await findQuotes();
+    setArrayQuotes(response);
+  };
+
+  const value = { quotes, addQuotes, getArrayQuotes, arrayQuotes };
   return (
     <QuotesContext.Provider value={value}>{children}</QuotesContext.Provider>
   );

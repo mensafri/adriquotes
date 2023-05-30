@@ -3,20 +3,30 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import "./quotes.styles.css";
-import { findQuotes } from "../firebase";
+import { QuotesContext } from "../contexts/QuotesContexts";
 
 export default function Quotes() {
-  const [quotes, setQuotes] = React.useState("Lo Pikir Lo Keren?");
+  const [quote, setQuote] = React.useState("Lo Pikir Lo Keren?");
+  const { getArrayQuotes, arrayQuotes } = React.useContext(QuotesContext);
 
   const handleClick = async () => {
-    const response = await findQuotes();
-    const index = Math.floor(Math.random() * response.length);
-    if (response[index].quotes !== "") {
-      setQuotes(response[index].quotes);
+    const index = Math.floor(Math.random() * arrayQuotes.length);
+    if (arrayQuotes[index].quotes !== "" || arrayQuotes[index].quotes === []) {
+      setQuote(arrayQuotes[index].quotes);
+      console.log(arrayQuotes[index].quotes);
     } else {
-      setQuotes("Lo Pikir Lo Keren?");
+      setQuote("Lo Pikir Lo Keren?");
     }
   };
+
+  React.useEffect(() => {
+    const fetchQuotes = async () => {
+      await getArrayQuotes();
+    };
+
+    fetchQuotes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="quotes-box">
@@ -34,7 +44,7 @@ export default function Quotes() {
             opacity: 0.8,
           }}
         >
-          <p className="quote-container">"{quotes}"</p>
+          <p className="quote-container">"{quote}"</p>
         </Card>
         <Box mt={4}>
           <Button variant="contained" onClick={handleClick} color="primary">

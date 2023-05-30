@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import "./quotes.styles.css";
-import { inputQuotes } from "../firebase";
+import { QuotesContext } from "../contexts/QuotesContexts";
 
 export default function InputQuotes() {
   const [quote, setQuote] = useState("");
+  const { addQuotes, quotes } = useContext(QuotesContext);
 
   const handleChange = (e) => {
     setQuote(e.target.value);
@@ -15,8 +16,8 @@ export default function InputQuotes() {
 
   const handleClick = () => {
     if (quote !== "") {
-      inputQuotes(quote);
-      setQuote("");
+      addQuotes(quote);
+      console.log('quotes context from input', quotes);
     } else {
       return;
     }
@@ -47,11 +48,7 @@ export default function InputQuotes() {
             />
           </CardContent>
           <CardActions sx={{ justifyContent: "center" }}>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={handleClick}
-            >
+            <Button variant="outlined" color="primary" onClick={handleClick}>
               Sip!
             </Button>
           </CardActions>

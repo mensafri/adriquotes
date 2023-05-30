@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { v4 as uuidv4 } from 'uuid';
 // import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
@@ -27,11 +28,12 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-const collection_name = 'quotes';
+const collection_name = 'testing';
 
 export const inputQuotes = async (quotesInput) => {
   try {
     await addDoc(collection(db, collection_name), {
+      uuid: uuidv4(),
       quotes: quotesInput,
       date: new Date(),
     });
