@@ -11,10 +11,8 @@ export default function Quotes() {
 
   const handleClick = async () => {
     const index = Math.floor(Math.random() * arrayQuotes.length);
-    if (arrayQuotes[index].quotes !== "" || arrayQuotes[index].quotes === []) {
+    if (arrayQuotes[index].quotes !== "") {
       setQuote(arrayQuotes[index].quotes);
-      console.log(arrayQuotes[index].quotes);
-      console.log(arrayQuotes[index].id);
     } else {
       setQuote("Lo Pikir Lo Keren?");
     }
