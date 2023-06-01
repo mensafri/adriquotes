@@ -18,15 +18,6 @@ export default function Quotes() {
     }
   };
 
-  // React.useEffect(() => {
-  //   const fetchQuotes = async () => {
-  //     await getArrayQuotes();
-  //   };
-
-  //   fetchQuotes();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
     <div className="quotes-box">
       <Box
