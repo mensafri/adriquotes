@@ -60,6 +60,9 @@ export default function Navbar() {
               </Link>
             </Typography>
             <Button color="inherit">Login with Google</Button>
+            <Button color="inherit">
+              <Link to="/inputQuotes">Masukkan Quotes</Link>
+            </Button>
             <Button
               color="inherit"
               ref={anchorRef}
@@ -98,7 +101,9 @@ export default function Navbar() {
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={handleClose}>My account</MenuItem>
                         <MenuItem onClick={handleClose}>Logout</MenuItem>
-                        <MenuItem onClick={handleClose}><Link to='/list'>List Quotes</Link></MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Link to="/list">List Quotes</Link>
+                        </MenuItem>
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
